@@ -58,6 +58,7 @@ If energy consumption does not provide additional information, we will ask what 
 * Control variables:
     * Data:
        * Video pipeline
+    * Hardware resources (specifics TBD)
 * Evaluation setup:
     * Clone IPA on Chameleon Cloud machine.
     * Run IPA using the [experiment runner script](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/runner/runner_script.py) over the [video pipeline simulation config file](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/data/configs/pipeline-simulation/video.yaml).
