@@ -37,25 +37,30 @@ If energy consumption does provide some additional information in the search spa
 If energy consumption does not provide additional information, we will ask what other ways we can consider the importance of energy consumption in IPA. This may include GPU time-slicing, considering time of day that the model is run or where resources are located, or simply providing energy consumption data as many machine learning pipelines do not evaluate energy consumption and there is no standard open source tool for providing these metrics.
 
 ## Evaluation Experiment (Sketch)
-* Challenge: IPA does not consider energy consumption as part of its pipeline evaluation.
+* Challenge:
+   * IPA does not consider energy consumption as part of its pipeline evaluation.
+   * Is energy consumption a relevant metric for pipeline evaluation?
 * Key metrics:
     * Energy consumption
     * Cost
     * Latency
     * Accuracy
 * Independent variables:
-    * Model size
-    * Batch size
-    * Model replication
+   * Configuration space:
+      * Model size
+      * Batch size
+      * Model replication
 * Dependent variables:
     * Energy consumption
     * Cost
     * Latency
     * Accuracy
 * Control variables:
-    * Video pipeline
+    * Data:
+       * Video pipeline
 * Evaluation setup:
-    * Clone IPA on Chameleon Cloud workspace
-    * Run IPA using the [experiment runner script](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/runner/runner_script.py) over the [video pipeline simulation config file](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/data/configs/pipeline-simulation/video.yaml)
+    * Clone IPA on Chameleon Cloud machine.
+    * Run IPA using the [experiment runner script](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/runner/runner_script.py) over the [video pipeline simulation config file](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/data/configs/pipeline-simulation/video.yaml).
     * Reproduce average analysis of workload on this pipeline as in Figure 8b of the IPA paper.
-          * The final report will have the same plot including tracking of energy consumption.
+       * The final report will have the same plot including tracking of energy consumption.
+    * For each configuration generated, what is the energy consumption and how does it relate to the other factors in the trade-off space?
