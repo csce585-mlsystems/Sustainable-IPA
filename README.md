@@ -36,32 +36,15 @@ If energy consumption does provide some additional information in the search spa
 
 If energy consumption does not provide additional information, we will ask what other ways we can consider the importance of energy consumption in IPA. This may include GPU time-slicing, considering time of day that the model is run or where resources are located, or simply providing energy consumption data as many machine learning pipelines do not evaluate energy consumption and there is no standard open source tool for providing these metrics.
 
-## Evaluation Experiment (Sketch)
-* Challenge:
-   * IPA does not consider energy consumption as part of its pipeline evaluation.
-   * Is energy consumption a relevant metric for pipeline evaluation?
-* Key metrics:
-    * Energy consumption
-    * Cost
-    * Latency
-    * Accuracy
-* Independent variables:
-   * Configuration space:
-      * Model size
-      * Batch size
-      * Model replication
-* Dependent variables:
-    * Energy consumption
-    * Cost
-    * Latency
-    * Accuracy
-* Control variables:
-    * Data:
-       * Video pipeline
-    * Hardware resources (specifics TBD)
-* Evaluation setup:
-    * Clone IPA on Chameleon Cloud machine.
-    * Run IPA using the [experiment runner script](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/runner/runner_script.py) over the [video pipeline simulation config file](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/data/configs/pipeline-simulation/video.yaml).
-    * Reproduce average analysis of workload on this pipeline as in Figure 8b of the IPA paper.
-       * The final report will have the same plot including tracking of energy consumption.
-    * For each configuration generated, what is the energy consumption and how does it relate to the other factors in the trade-off space?
+## Evaluation Experiment Design
+IPA does not consider energy consumption as part of its pipeline evaluation. We want to determine if energy consumption is a relevant metric for pipeline evaluation. We are considering a lower energy consumption to be more desirable, since energy efficiency is better for the environment, with the ultimate aim of creating a more sustainable version of IPA that considers environmental impact. We have designed an experiment to analyze the energy consumption of different adaptations in the adaptation space created by IPA on a single pipeline.
+
+First, we shall create a script to output a plot visualizing the accuracy, cost, and latency of all adaptations in the adaptation space for the Video pipeline at the same timestep. This script will be adapted from [ipa/experiements/runner/notebooks/paper-fig13-gurobi-decision-latency.ipynb](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/runner/notebooks/paper-fig13-gurobi-decision-latency.ipynb), the script used to create Figure 13 in the paper. Like in this script, our script will load the experiment data from the video pipeline using the Adaptation Parser in [ipa/experiments/utils.parser.py](https://github.com/reconfigurable-ml-pipeline/ipa/blob/e1f08dde84e2bb721b2c78ad7ef651134abf5380/experiments/utils/parser.py). We will then use the adaptation logs to plot every adaptation. The adaptation search space will be different combinations of model variants and batch sizes.
+
+In our output plot, cost will be plotted on the y-axis and accuracy will be plotted on the x-axis. The points representing an adaptation in the search space will be colored based on the percentage of latency SLAs that were met, particularly for the end-to-end latency.
+
+We will then run every adaptation in our search space over the Video pipeline data at the same timestep and measure energy consumption. We will measure energy consumption using Chameleon Cloud’s etrace2 tool and NVIDIA’s Power Capture Analysis Tool (PCAT).
+
+**TODO: hardware specs**
+
+We will then use our plotting script to add a z-axis which will represent the energy consumption of the adaptation in the adaptation space. We will analyze this new plot to find how the ideal adaptations are changed when energy consumption is evaluated as a relevant metric.
