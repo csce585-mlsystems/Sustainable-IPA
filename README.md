@@ -1,5 +1,5 @@
 # Sustainable-IPA
-Considering energy consumption in [IPA](https://github.com/reconfigurable-ml-pipeline/ipa). towards Sustainable AI.
+Considering energy consumption in [IPA](https://github.com/reconfigurable-ml-pipeline/ipa) towards Sustainable AI. Deliverables and documentation are tracked here, while code changes are tracked on the [Sustainable-IPA Fork](https://github.com/csce585-mlsystems/Sustainable-IPA-Fork).
 
 ## Proposal
 ### Problem
