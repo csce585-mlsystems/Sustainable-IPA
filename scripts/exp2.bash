@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# NOTE: run in yolov7/ folder
+
 mkdir ./out
 output="./out/run-$(date +%Y%m%d.%H%M.%S).out"
+#output="./out/recent.out"
 echo "$output"
 
 declare -a weights=(
@@ -9,8 +12,16 @@ declare -a weights=(
 )
 declare -a batches=(
 [0]=5
-[1]=32
-[2]=50
+[1]=10
+[2]=32
+[3]=50
+[4]=100
+[5]=150
+[6]=200
+[7]=300
+[8]=400
+[9]=500
+[10]=1000
 )
 
 echo "weights:${weights[@]}" >> $output

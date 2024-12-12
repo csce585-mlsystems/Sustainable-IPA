@@ -1,6 +1,9 @@
 # Sustainable-IPA
 Considering energy consumption in [IPA](https://github.com/reconfigurable-ml-pipeline/ipa) towards Sustainable AI. Deliverables and documentation are tracked here, while code changes are tracked on the [Sustainable-IPA Fork](https://github.com/csce585-mlsystems/Sustainable-IPA-Fork).
 
+## Reproducing Results
+To reproduce the results, follow the instructions in [scripts/README.md](./scripts/README.md).
+
 ## Proposal
 ### Problem
 Sustainable AI is a subfield dedicated to considering energy usage in AI and machine learning models. Machine learning models consume a large amount of energy, but sustainability is often an afterthought for developers of these models. Additionally, for many models inference can have more of an energy impact than training, especially when large quantities of users are being served.
